@@ -22,4 +22,18 @@ def max_depth(root: Optional[TreeNode]) -> int:
 
 # TODO: Implement the lowest_common_ancestor function
 def lowest_common_ancestor(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
-    pass
+    """
+    Return the lowest node in a BST that has both p and q as descendants.
+    A node can be its own ancestor, so this also handles cases where p or q
+    is the root or is an ancestor of the other node.
+    """
+    if root is None:
+        return None
+
+    if p.val < root.val and q.val < root.val:
+        return lowest_common_ancestor(root.left, p, q)
+
+    if p.val > root.val and q.val > root.val:
+        return lowest_common_ancestor(root.right, p, q)
+
+    return root
